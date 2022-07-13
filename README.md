@@ -9,7 +9,7 @@ Raspberry Pi:
 
 1. Edge detection image processing example (the folder 'image-processing')
 2. Face detection inside an image (in the folder 'face-detection')
-3. Software that detect live people and saving their names in a list (in the folder 'face-detection')
+3. Software that detect live people and saving their names in a list (in the folder 'facial-recognition')
 
 *Installation*
 

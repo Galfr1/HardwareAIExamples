@@ -3,13 +3,13 @@ In this reposetory you will find 3 examples of the capabilities of the Raspberry
 
 Arduino:
 
-1. Fluppy Bird game for Arduino
+1. Fluppy Bird game for Arduino (the folder 'bird')
 
 Raspberry Pi:
 
-1. Edge detection image processing example
-2. Face detection inside an image
-3. Software that detect live people and saving their names in a list
+1. Edge detection image processing example (the folder 'image-proccesing')
+2. Face detection inside an image (in the folder 'face-detection')
+3. Software that detect live people and saving their names in a list (in the folder 'face-recognition')
 
 *Installation*
 

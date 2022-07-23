@@ -25,7 +25,7 @@ encodingsP = "encodings.pickle"
 def addStudent():
     if (currentname not in students) and (currentname != "unknown"):
         f = open(filename, "a")
-        f.write(currentname)
+        f.write("\n" + currentname)
         f.close()
         students.append(currentname)
 

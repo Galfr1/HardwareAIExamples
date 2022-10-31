@@ -1,33 +1,63 @@
 import cv2
+import tkinter as tk
 
-name = 'Gal' #replace with your name
+name = 'gal'
 
-cam = cv2.VideoCapture(0)
+window = tk.Tk()
+window.title("Name")
+window.geometry("800x800")
 
-cv2.namedWindow("press space to take a photo", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("press space to take a photo", 500, 300)
+def cap():
+    cam = cv2.VideoCapture(0)
 
-img_counter = 0
+    cv2.namedWindow("press space to take a photo", cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("press space to take a photo", 500, 300)
 
-while True:
-    ret, frame = cam.read()
-    if not ret:
-        print("failed to grab frame")
-        break
-    cv2.imshow("press space to take a photo", frame)
+    img_counter = 0
 
-    k = cv2.waitKey(1)
-    if k%256 == 27:
-        # ESC pressed
-        print("Escape hit, closing...")
-        break
-    elif k%256 == 32:
-        # SPACE pressed
-        img_name = "dataset/"+ name +"/image_{}.jpg".format(img_counter)
-        cv2.imwrite(img_name, frame)
-        print("{} written!".format(img_name))
-        img_counter += 1
+    while True:
+        ret, frame = cam.read()
+        if not ret:
+            print("failed to grab frame")
+            break
+        cv2.imshow("press space to take a photo", frame)
 
-cam.release()
+        k = cv2.waitKey(1)
+        if k%256 == 27:
+            # ESC pressed
+            print("Escape hit, closing...")
+            break
+        elif k%256 == 32:
+            # SPACE pressed
+            img_name = "dataset/"+ name +"/image_{}.jpg".format(img_counter)
+            cv2.imwrite(img_name, frame)
+            print("{} written!".format(img_name))
+            img_counter += 1
 
-cv2.destroyAllWindows()
+    cam.release()
+
+    cv2.destroyAllWindows()
+
+
+input = tk.Text(window)
+def read():
+    inp = input.get("1.0", tk.END)
+    name = inp.lower().replace(" ", "")
+    print(name)
+    window.destroy()
+    
+    pop = tk.Tk()
+    pop.title("Important")
+    pop.geometry("600x600")
+
+    lab = tk.Label(pop, text="press space to take a photo in the next window, esc to close...")
+    lab.pack()
+    bt1 = tk.Button(pop, text="OK", command=cap)
+    bt1.pack()
+
+button = tk.Button(window, text="OK", command=read)
+lab1 = tk.Label(window, text="Please enter a name:")
+lab1.pack()
+input.pack()
+button.pack()
+window.mainloop()

@@ -1,7 +1,6 @@
 import cv2
 import tkinter as tk
-
-name = 'gal'
+import os
 
 window = tk.Tk()
 window.title("Name")
@@ -14,6 +13,15 @@ def cap():
     cv2.resizeWindow("press space to take a photo", 500, 300)
 
     img_counter = 0
+    
+    DIR = '/dataset/'+name
+    print(DIR)
+    
+    if os.path.exists(DIR):
+        img_counter = img_counter + len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+        print('exists - shots will be added')
+    else:
+        print('dirctory will be created')
 
     while True:
         ret, frame = cam.read()
@@ -29,7 +37,9 @@ def cap():
             break
         elif k%256 == 32:
             # SPACE pressed
+            print(name)
             img_name = "dataset/"+ name +"/image_{}.jpg".format(img_counter)
+            img_name = img_name.replace('\n', '')
             cv2.imwrite(img_name, frame)
             print("{} written!".format(img_name))
             img_counter += 1
@@ -41,6 +51,9 @@ def cap():
 
 input = tk.Text(window)
 def read():
+    global name
+    name = ''
+    print(name)
     inp = input.get("1.0", tk.END)
     name = inp.lower().replace(" ", "")
     print(name)

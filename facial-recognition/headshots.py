@@ -14,7 +14,8 @@ def cap():
 
     img_counter = 0
     
-    DIR = '/dataset/'+name
+    DIR = 'dataset/'+name
+    DIR = DIR.replace('\n', '')
     print(DIR)
     
     if os.path.exists(DIR):
@@ -22,6 +23,7 @@ def cap():
         print('exists - shots will be added')
     else:
         print('dirctory will be created')
+        os.mkdir(DIR)
 
     while True:
         ret, frame = cam.read()

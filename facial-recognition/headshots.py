@@ -40,7 +40,7 @@ def cap():
         elif k%256 == 32:
             # SPACE pressed
             print(name)
-            img_name = "dataset/"+ name +"/image_{}.jpg".format(img_counter)
+            img_name = "dataset/"+ name +"/image_{}-n.jpg".format(img_counter)
             img_name = img_name.replace('\n', '')
             cv2.imwrite(img_name, frame)
             print("{} written!".format(img_name))
